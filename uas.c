@@ -6,6 +6,7 @@ void menu();
 void tambahbuku();
 int jumlah = 0;
 void caribuku();
+void pinjambuku();
 
 int main()
 {
@@ -97,6 +98,41 @@ void caribuku()
     if (x == 0)
     {
         printf("Buku %s tidak ditemukan\n", judul);
+    }
+}
+
+
+void pinjambuku()
+{
+    char judul[60];
+    int x = 0;
+
+    printf("Judul buku: ");
+    scanf("%s", judul);
+
+    int i = 0;
+    while (i < jumlah)
+    {
+        if (strcmp(buku[i].judul, judul) == 0)
+        {
+            if (buku[i].tersedia == 0)
+            {
+                printf("Buku \"%s\" sedang dipinjam.\n", buku[i].judul);
+                printf("\n");
+            }
+            else
+            {
+                printf("Berhasil meminjam buku \"%s\".\n", buku[i].judul);
+            }
+            x = 1;
+            break;
+        }
+        i++;
+    }
+
+    if (x == 0)
+    {
+        printf("Buku \"%s\" yang ingin anda pinjam tidak ditemukan\n", judul);
     }
 }
 
