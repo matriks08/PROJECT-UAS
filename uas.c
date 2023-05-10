@@ -1,24 +1,45 @@
 #include <stdio.h>
 #include <string.h>
 
-struct bukuperpus
+struct bukuperpus;
 void menu();
 void tambahbuku();
 int jumlah = 0;
 void caribuku();
 void pinjambuku();
+void kembalikanbuku();
 
 int main()
 {
-      int x;
-      menu();
-      printf("Silahkan pilih: ");
-      scanf("%d", &x);
-      printf("\n");
-      if (x == 1)
-        {
-            tambahbuku();
-        }
+    int x;
+    menu();
+    printf("Silahkan pilih: ");
+    scanf("%d", &x);
+    printf("\n");
+    if (x == 1)
+    {
+        tambahbuku();
+    }
+    else if (x == 2)
+    {
+        caribuku();
+    }
+    else if (x == 3)
+    {
+        pinjambuku();
+    }
+    else if (x == 4)
+    {
+        kembalikanbuku();
+    }
+    else if (x == 5)
+    {
+        printf("=====SAMPAI JUMPA=====\n");
+    }
+    else
+    {
+        printf("Silahkan pilih fitur diatas!\n");
+    }
 }
 
 struct bukuperpus
@@ -133,6 +154,40 @@ void pinjambuku()
     if (x == 0)
     {
         printf("Buku \"%s\" yang ingin anda pinjam tidak ditemukan\n", judul);
+    }
+}
+
+void kembalikanbuku()
+{
+    char judul[60];
+    int x = 0;
+
+    printf("Judul buku: ");
+    scanf("%s", judul);
+
+    int i = 0;
+    while (i < jumlah)
+    {
+        if (strcmp(buku[i].judul, judul) == 0)
+        {
+            if (buku[i].tersedia == 0) // buku[i].tersedia = 0
+            {
+                buku[i].tersedia = 1;
+                printf("Buku %s berhasil dikembalikan ke perpustakaan.\n", buku[i].judul);
+            }
+            else
+            {
+                printf("Buku tersebut sudah dikembalikan");
+            }
+            x = 1;
+            break;
+        }
+        i++;
+    }
+
+    if (x == 0)
+    {
+        printf("Buku %s belum ditambahkan [Buku tidak ada didalam data Perpustakaan]\n", judul);
     }
 }
 
