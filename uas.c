@@ -11,35 +11,43 @@ void kembalikanbuku();
 
 int main()
 {
+
     int x;
-    menu();
-    printf("Silahkan pilih: ");
-    scanf("%d", &x);
-    printf("\n");
-    if (x == 1)
+    do
     {
-        tambahbuku();
-    }
-    else if (x == 2)
-    {
-        caribuku();
-    }
-    else if (x == 3)
-    {
-        pinjambuku();
-    }
-    else if (x == 4)
-    {
-        kembalikanbuku();
-    }
-    else if (x == 5)
-    {
-        printf("=====SAMPAI JUMPA=====\n");
-    }
-    else
-    {
-        printf("Silahkan pilih fitur diatas!\n");
-    }
+        menu();
+        printf("Silahkan pilih: ");
+        scanf("%d", &x);
+        printf("\n");
+
+        if (x == 1)
+        {
+            tambahbuku();
+        }
+        else if (x == 2)
+        {
+            caribuku();
+        }
+        else if (x == 3)
+        {
+            pinjambuku();
+        }
+        else if (x == 4)
+        {
+            kembalikanbuku();
+        }
+        else if (x == 5)
+        {
+            printf("=====SAMPAI JUMPA=====\n");
+        }
+        else
+        {
+            printf("Silahkan pilih fitur diatas!\n");
+        }
+
+    } while (x != 5);
+
+    return 0;
 }
 
 struct bukuperpus
@@ -69,25 +77,30 @@ void menu()
 void tambahbuku()
 {
     printf("Untuk menambahkan data buku, masukan:\n");
+
     printf("Judul buku\t: ");
     scanf("%s", buku[jumlah].judul);
-    // scanf(" %[^\n]s", buku[jumlah].judul);
+
     printf("Jenis buku\t: ");
     scanf("%s", buku[jumlah].jenis);
+
     printf("Pengarang\t: ");
     scanf("%s", buku[jumlah].pengarang);
+
     printf("Penerbit\t: ");
     scanf("%s", buku[jumlah].penerbit);
+
     printf("Tahun terbit\t: ");
     scanf("%d", &buku[jumlah].tahun);
-    buku[jumlah].tersedia = 1;
+
     printf("Jumlah halaman\t: ");
     scanf("%d", &buku[jumlah].halaman);
+
+    buku[jumlah].tersedia = 1;
     ++jumlah;
 
     printf("=====Terimakasih telah menambahkan buku=====\n");
 }
-
 
 void caribuku()
 {
@@ -118,10 +131,9 @@ void caribuku()
 
     if (x == 0)
     {
-        printf("Buku %s tidak ditemukan\n", judul);
+        printf("Tidak ditemukan buku dengan judul \"%s\"\n", judul);
     }
 }
-
 
 void pinjambuku()
 {
@@ -144,6 +156,7 @@ void pinjambuku()
             else
             {
                 printf("Berhasil meminjam buku \"%s\".\n", buku[i].judul);
+                buku[i].tersedia = 0;
             }
             x = 1;
             break;
@@ -173,11 +186,11 @@ void kembalikanbuku()
             if (buku[i].tersedia == 0) // buku[i].tersedia = 0
             {
                 buku[i].tersedia = 1;
-                printf("Buku %s berhasil dikembalikan ke perpustakaan.\n", buku[i].judul);
+                printf("Buku \"%s\" berhasil dikembalikan ke perpustakaan.\n", buku[i].judul);
             }
             else
             {
-                printf("Buku tersebut sudah dikembalikan");
+                printf("Buku tersebut sudah dikembalikan\n");
             }
             x = 1;
             break;
@@ -187,7 +200,6 @@ void kembalikanbuku()
 
     if (x == 0)
     {
-        printf("Buku %s belum ditambahkan [Buku tidak ada didalam data Perpustakaan]\n", judul);
+        printf("Buku \"%s\" belum ditambahkan [Buku tidak ada didalam data Perpustakaan]\n", judul);
     }
 }
-
