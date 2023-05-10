@@ -5,10 +5,19 @@ struct bukuperpus
 void menu();
 void tambahbuku();
 int jumlah = 0;
+void caribuku();
 
 int main()
 {
-  
+      int x;
+      menu();
+      printf("Silahkan pilih: ");
+      scanf("%d", &x);
+      printf("\n");
+      if (x == 1)
+        {
+            tambahbuku();
+        }
 }
 
 struct bukuperpus
@@ -40,7 +49,7 @@ void tambahbuku()
     printf("Untuk menambahkan data buku, masukan:\n");
     printf("Judul buku\t: ");
     scanf("%s", buku[jumlah].judul);
-    // scanf("%[^\n]s", buku[jumlah].judul);
+    // scanf(" %[^\n]s", buku[jumlah].judul);
     printf("Jenis buku\t: ");
     scanf("%s", buku[jumlah].jenis);
     printf("Pengarang\t: ");
@@ -55,5 +64,39 @@ void tambahbuku()
     ++jumlah;
 
     printf("=====Terimakasih telah menambahkan buku=====\n");
+}
+
+
+void caribuku()
+{
+    char judul[60];
+    int x = 0;
+
+    printf("Silahkan cari buku: ");
+    scanf("%s", judul);
+
+    int i = 0;
+    while (i < jumlah)
+    {
+        if (strcmp(buku[i].judul, judul) == 0)
+        {
+            printf("=======Buku Tersedia=======\n");
+            printf("Judul buku\t: %s\n", buku[i].judul);
+            printf("Jenis buku\t: %s\n", buku[i].pengarang);
+            printf("Pengarang\t: %s\n", buku[i].pengarang);
+            printf("Tahun terbit\t: %d\n", buku[i].tahun);
+            printf("Penerbit\t: %s\n", buku[i].penerbit);
+            printf("Jumlah halaman\t: %d\n", buku[i].halaman);
+            printf("=======Buku Tersedia=======\n");
+            x = 1;
+            break;
+        }
+        i++;
+    }
+
+    if (x == 0)
+    {
+        printf("Buku %s tidak ditemukan\n", judul);
+    }
 }
 
